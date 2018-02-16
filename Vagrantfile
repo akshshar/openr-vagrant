@@ -10,7 +10,7 @@ Vagrant.configure(2) do |config|
   
 
    config.vm.define "rtr1" do |rtr1|
-      rtr1.vm.box =  "openr"
+      rtr1.vm.box =  "bento/ubuntu-16.04"
 
       rtr1.vm.network "forwarded_port", guest: 57777, host: 57777, auto_correct: true 
 
@@ -67,7 +67,7 @@ Vagrant.configure(2) do |config|
 
 
    config.vm.define "rtr2" do |rtr2|
-      rtr2.vm.box =  "openr"
+      rtr2.vm.box =  "bento/ubuntu-16.04"
 
       rtr2.vm.network "forwarded_port", guest: 57777, host: 57778, auto_correct: true
       # gig0/0/0/0 connected to "link1"  and  gig0/0/0/1 connected to "link2"
