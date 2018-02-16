@@ -2,7 +2,7 @@
 
 import ipaddress
 
-batch_num = 100
+batch_num = 10
 batch_size = 100
 starting_prefix = u'100.1.1.0'
 prefix_len =24
