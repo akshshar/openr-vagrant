@@ -1,7 +1,12 @@
 #!/bin/bash
 
-apt-get update
-apt-get -y install bridge-utils lxc
+http_proxy=$1
+https_proxy=$2
+SET_PROXY=`export http_proxy="$http_proxy" && https_proxy="$http_proxy"`
+
+
+$SET_PROXY && apt-get update && apt-get -y install bridge-utils lxc
+
 ifconfig eth1 promisc
 ifconfig eth2 promisc
 ifconfig eth3 promisc

@@ -3,10 +3,13 @@
 echo "Running provisioning sript for rtr1" 
 
 # Clone and install open/R
+http_proxy=$1
+https_proxy=$2
+SET_PROXY=`export http_proxy="$http_proxy" && https_proxy="$http_proxy"`
 
-apt-get update && apt-get install git pkg-config
-git clone https://github.com/akshshar/openr.git /root/openr && cd /root/openr/ && git checkout openr20171212 && cd /root/openr/build && ./build_openr_dependencies.sh
-cd /root/openr/build && ./build_openr.sh && ./remake_glog.sh && cd /root/ && rm -r /root/openr
+$SET_PROXY && apt-get update && apt-get install git pkg-config
+$SET_PROXY && git clone https://github.com/akshshar/openr.git /root/openr && cd /root/openr/ && git checkout openr20171212 && cd /root/openr/build && ./build_openr_dependencies.sh
+$SET_PROXY && cd /root/openr/build && ./build_openr.sh && ./remake_glog.sh
 
 cp /vagrant/scripts/run_openr_rtr2.sh /usr/sbin/run_openr.sh
 chmod 777 /usr/sbin/run_openr.sh
