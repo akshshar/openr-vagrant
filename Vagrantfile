@@ -24,7 +24,6 @@ Vagrant.configure(2) do |config|
 
       rtr1.vm.provision "apply_config", type: "shell" do |s|
           s.path =  "scripts/setup_rtr1.sh"
-          s.args = '#{ENV['http_proxy']} #{ENV['https_proxy']}'
       end
 
       rtr1.vm.provider "virtualbox" do |v|
@@ -53,7 +52,6 @@ Vagrant.configure(2) do |config|
 
       switch.vm.provision "apply_config", type: "shell" do |s|
           s.path =  "scripts/setup_switch.sh"
-          s.args = '#{ENV['http_proxy']} #{ENV['https_proxy']}'
       end
 
       switch.vm.provider "virtualbox" do |v|
@@ -84,7 +82,6 @@ Vagrant.configure(2) do |config|
 
       rtr2.vm.provision "apply_config", type: "shell" do |s|
           s.path =  "scripts/setup_rtr2.sh"
-          s.args = '#{ENV['http_proxy']} #{ENV['https_proxy']}'
       end
 
       rtr2.vm.provider "virtualbox" do |v|
