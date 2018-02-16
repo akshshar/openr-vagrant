@@ -8,7 +8,7 @@ http_proxy=`cat /vagrant/scripts/http_proxy`
 https_proxy=`cat /vagrant/scripts/https_proxy`
 
 export http_proxy=${http_proxy} && export https_proxy=${http_proxy} && apt-get update && apt-get install -y git pkg-config
-export http_proxy=${http_proxy} && export https_proxy=${http_proxy} && git clone https://github.com/akshshar/openr.git /home/vagrant/openr && cd /home/vagrant/openr/ && git checkout openr20171212 && cd /home/vagrant/openr/build && ./build_openr_dependencies.sh
+export http_proxy=${http_proxy} && export https_proxy=${http_proxy} && git clone https://github.com/akshshar/openr.git /home/vagrant/openr && cd /home/vagrant/openr/ && git checkout linux_openr && cd /home/vagrant/openr/build && ./build_openr_dependencies.sh
 export http_proxy=${http_proxy} && export https_proxy=${http_proxy} && cd /home/vagrant/openr/build && ./build_openr.sh && ./remake_glog.sh
 
 cp /vagrant/scripts/run_openr_rtr2.sh /usr/sbin/run_openr.sh
