@@ -29,7 +29,7 @@ DOMAIN=openr
 
 # List of comma separated list of prefixes to announce
 # e.g. "face:cafe::1/128,face:b00c::/64"
-ROUTE_LIST=$(python /vagrant/increment_ipv4_prefix.py)
+ROUTE_LIST=$(python /vagrant/scripts/increment_ipv4_prefix.py)
 PREFIXES="60.1.1.1/32,${ROUTE_LIST},face:cafe::20/128,face:b00c::20/128"
 
 # Used to assign elected address if prefix allocator is enabled
