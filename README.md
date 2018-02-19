@@ -79,16 +79,24 @@ Open up the pcap file in wireshark and you should see the following messages sho
 
   *  **Hello Messages**: The hello messages are sent to UDP port 6666 to the All-Nodes IPv6 
      Multicast address ff02::1 and source IP = Link local IPv6 address of node. These messages are 
-     used to discover neighbors and learn their link local IPv6 addresses.  
+     used to discover neighbors and learn their link local IPv6 addresses.    
+        
+        
      
      ![Openr/R hello messages](/openr_hellos.png)
   
-
+   
+      
+      
   *  **Peering Messages**: Once the link local IPv6 address of neighbor is known, 0MQ TCP messages 
      are sent out to create an adjacency with the neighbor on an interface. One such message is 
      shown below:  
-     
-     ![0MQ messages openr](/0mq_openr.png)
+         
+            
+            
+     ![0MQ messages openr](/0mq_openr.png)   
+         
+         
   
 
 ### Open/R breeze CLI
