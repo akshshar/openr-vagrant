@@ -81,22 +81,33 @@ Open up the pcap file in wireshark and you should see the following messages sho
      Multicast address ff02::1 and source IP = Link local IPv6 address of node. These messages are 
      used to discover neighbors and learn their link local IPv6 addresses.    
         
-        
+     &nbsp;   
+     &nbsp;   
+     
      
      ![Openr/R hello messages](/openr_hellos.png)
   
-   
+           
+     &nbsp;   
+     &nbsp;   
+     
       
       
   *  **Peering Messages**: Once the link local IPv6 address of neighbor is known, 0MQ TCP messages 
      are sent out to create an adjacency with the neighbor on an interface. One such message is 
      shown below:  
          
+             
+     &nbsp;   
+     &nbsp;   
             
             
      ![0MQ messages openr](/0mq_openr.png)   
          
-         
+                 
+     &nbsp;   
+     &nbsp;   
+     
   
 
 ### Open/R breeze CLI
