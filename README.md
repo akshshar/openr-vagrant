@@ -2,22 +2,19 @@
 
 ### Topology
 
-![openr_vagrant](/openr_vagrant)
-
+![openr_vagrant](/openr_vagrant.png)
 
 
 The vagrant provisioners will install open/R on "vagrant up" on both rtr1 and rtr2 and will setup the required "run" script for openr at `/usr/sbin/run_openr.sh` on each node.
 
 The switch in the middle is a nice-to-have. It allows you to capture packets as the two nodes rtr1 and rtr2 exchange hellos and peering messages.
 
-Clone the above git repo and issue a `vagrant up` inside the directory:
+Clone the git repo and issue a `vagrant up` inside the directory:
 
 If you're behind a proxy, just populate the `<git repo directory>/scripts/http_proxy` `<git repo directory>/scripts/https_proxy` files before issuing a `vagrant up`.
-{: .notice--warning} 
 
-<div class="highlighter-rouge">
-<pre class="highlight">
-<code>
+
+```shell
 cisco@host:~$ <mark> git clone https://github.com/akshshar/openr-vagrant </mark>
 Cloning into 'openr-vagrant'...
 remote: Counting objects: 31, done.
@@ -31,19 +28,16 @@ Bringing machine 'rtr1' up with 'virtualbox' provider...
 Bringing machine 'switch' up with 'virtualbox' provider...
 Bringing machine 'rtr2' up with 'virtualbox' provider...
 
+```
 
-
-</code>
-</pre>
-</div>
-
+### Reducing Bring up time
 The provisioning scripts build open/R from scratch on rtr1 and rtr2, so expect this bringup to take a long time. You could parallelize the effort by commenting out the provisioners for rtr1 and rtr2  in the Vagrantfile, bring up the nodes, uncomment the provisioners and then run `vagrant provision rtr1` and `vagrant provision rtr2` in two separate terminals simultaneously.
-{: .notice--warning}  
 
-Once the devices are up, issue a `vagrant ssh rtr1` and `vagrant ssh rtr2` in separate terminals and start open/R (The run scripts added to each node will automatically detect the interfaces) and start discovering each other).  
+
+Once the devices are up, issue a `vagrant ssh rtr1` and `vagrant ssh rtr2` in separate terminals and start open/R (The run scripts added to each node will automatically detect the interfaces and start discovering each other).  
 
 Further, for rtr2, I've added a simple route-scaling python script that allows you to add up to 8000 routes by manipulating the `batch_size` and `batch_num` values in `<git repo directory>/scripts/increment_ipv4_prefix.py` before running /usr/sbin/run_openr.sh 
-{: .notice--info}
+
 
 ```
 vagrant@rtr1:~$ /usr/sbin/run_openr.sh 
@@ -70,10 +64,8 @@ openr[10562]: Starting OpenR daemon.
 
 Start a tcpdump capture on one or more of the bridges on the switch in the middle:  
 
-<div class="highlighter-rouge">
-<pre class="highlight">
-<code>
-AKSHSHAR-M-K0DS:openr-two-nodes akshshar$<mark> vagrant ssh switch </mark>
+```shell
+host:openr-two-nodes akshshar$<mark> vagrant ssh switch </mark>
 
 #######################  snip #############################
 
@@ -81,10 +73,7 @@ Last login: Thu Feb 15 11:04:25 2018 from 10.0.2.2
 vagrant@vagrant-ubuntu-trusty-64:~$<mark> sudo tcpdump -i br0 -w /vagrant/openr.pcap </mark>
 tcpdump: listening on br0, link-type EN10MB (Ethernet), capture size 262144 bytes
 
-
-</code>
-</pre>
-</div>
+```
 
 Open up the pcap file in wireshark and you should see the following messages show up:
 
@@ -92,15 +81,15 @@ Open up the pcap file in wireshark and you should see the following messages sho
      Multicast address ff02::1 and source IP = Link local IPv6 address of node. These messages are 
      used to discover neighbors and learn their link local IPv6 addresses.  
      
-     ![Openr/R hello messages]({{site.baseurl}}/images/openr_hellos.png)
-     {: .notice--info}
+     ![Openr/R hello messages](/openr_hellos.png)
+  
 
   *  **Peering Messages**: Once the link local IPv6 address of neighbor is known, 0MQ TCP messages 
      are sent out to create an adjacency with the neighbor on an interface. One such message is 
      shown below:  
      
-     ![0MQ messages openr]({{site.baseurl}}/images/0mq_openr.png)
-     {: .notice--info}
+     ![0MQ messages openr](/0mq_openr.png)
+  
 
 ### Open/R breeze CLI
 
@@ -158,4 +147,4 @@ vagrant@rtr1:~$
 ```
 
 Great! These outputs should give you a fair gist of how Open/R works as a link state routing protocol.
-{: .notice--success}
+
