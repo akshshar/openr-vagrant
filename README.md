@@ -9,9 +9,12 @@ The vagrant provisioners will install open/R on "vagrant up" on both rtr1 and rt
 
 The switch in the middle is a nice-to-have. It allows you to capture packets as the two nodes rtr1 and rtr2 exchange hellos and peering messages.
 
+
+**!IMPORTANT!:  Before you run `vagrant up`, just populate the `<git repo directory>/scripts/http_proxy` `<git repo directory>/scripts/https_proxy` files if you're running behind a proxy. If not, you can let these files be empty.**
+
+
 Clone the git repo and issue a `vagrant up` inside the directory:
 
-If you're behind a proxy, just populate the `<git repo directory>/scripts/http_proxy` `<git repo directory>/scripts/https_proxy` files before issuing a `vagrant up`.
 
 
 ```shell
