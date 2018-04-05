@@ -54,8 +54,8 @@ Bringing machine 'rtr2' up with 'virtualbox' provider...
 </pre>
 </div>
 
-The provisioning scripts set up the ip addresses on the connecing ports of rtr1 and rtr2. The Vagrantfile uses a pre-built Vagrant box located [here](https://app.vagrantup.com/ciscoxr/boxes/openr-xr_ubuntu/versions/1.0.0)
-{: .notice--info}  
+The provisioning scripts set up the ip addresses on the connecting ports of rtr1 and rtr2. The Vagrantfile uses a pre-built Vagrant box located [here](https://app.vagrantup.com/ciscoxr/boxes/openr-xr_ubuntu/versions/1.0.0)
+ 
 
 Once the devices are up, issue a `vagrant ssh rtr1` and `vagrant ssh rtr2` in separate terminals and start open/R (The run scripts added to each node will automatically detect the interfaces and start discovering each other).  
 
