@@ -5,9 +5,7 @@
 ![openr_vagrant](/openr_vagrant.png)
 
 
-## Open/R on Linux:Vagrant
-
-If you'd like to try a back-to-back setup with two linux instances on your laptop, I've published a vagrant setup with two ubuntu 16.04 instances (rtr1 and rtr2) connected through an ubuntu switch:  
+The topology consists of two ubuntu 16.04 instances (rtr1 and rtr2) connected through an ubuntu switch:  
 
 ><https://github.com/akshshar/openr-vagrant>{:target="_blank"}
 
@@ -15,7 +13,8 @@ If you'd like to try a back-to-back setup with two linux instances on your lapto
 The switch in the middle is a nice-to-have. It allows you to capture packets as the two nodes rtr1 and rtr2 exchange hellos and peering messages.
   
     
-    
+## The Vagrantfiles
+
 The relevant `Vagrantfiles` in the repository are divided into two buckets:  
   
   *  **Pre-Built**: A pre-built ubuntu-16.04 vagrant box with open/R already built and installed has been published on vagrantcloud [here](https://app.vagrantup.com/ciscoxr/boxes/openr-xr_ubuntu/versions/1.0.0). The box is built using the hash: `a14e09abc0fcbe5835b45f549d48c09935d17f87` of <https://github.com/akshshar/openr-xr> as of April 5, 2018. This box is referenced in the `Vagrantfile` at the root of the git repo.
@@ -24,8 +23,9 @@ The relevant `Vagrantfiles` in the repository are divided into two buckets:
     
     
     
-  
-Clone the above git repo and issue a `vagrant up` inside the directory:
+## Steps to run the setup
+
+Clone the git repo and issue a `vagrant up` inside the directory:
 
 If you're behind a proxy, just populate the `<git repo directory>/scripts/http_proxy` `<git repo directory>/scripts/https_proxy` files before issuing a `vagrant up`.
   
