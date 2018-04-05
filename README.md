@@ -13,18 +13,24 @@ If you'd like to try a back-to-back setup with two linux instances on your lapto
 
 
 The switch in the middle is a nice-to-have. It allows you to capture packets as the two nodes rtr1 and rtr2 exchange hellos and peering messages.
-
+  
+    
+    
 The relevant `Vagrantfiles` in the repository are divided into two buckets:  
   
   *  **Pre-Built**: A pre-built ubuntu-16.04 vagrant box with open/R already built and installed has been published on vagrantcloud [here](https://app.vagrantup.com/ciscoxr/boxes/openr-xr_ubuntu/versions/1.0.0). The box is built using the hash: `a14e09abc0fcbe5835b45f549d48c09935d17f87` of <https://github.com/akshshar/openr-xr> as of April 5, 2018. This box is referenced in the `Vagrantfile` at the root of the git repo.
   
   *  **Latest Build**: If you'd like to build the boxes from scratch, drop into the `vagrant_build_latest/` folder before issuing a `vagrant up`.  
-  
+    
+    
+    
   
 Clone the above git repo and issue a `vagrant up` inside the directory:
 
 If you're behind a proxy, just populate the `<git repo directory>/scripts/http_proxy` `<git repo directory>/scripts/https_proxy` files before issuing a `vagrant up`.
-{: .notice--warning} 
+  
+    
+    
 
 <div class="highlighter-rouge">
 <pre class="highlight">
