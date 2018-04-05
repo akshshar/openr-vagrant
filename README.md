@@ -13,7 +13,7 @@ The topology consists of two ubuntu 16.04 instances (rtr1 and rtr2) connected th
 The switch in the middle is a nice-to-have. It allows you to capture packets as the two nodes rtr1 and rtr2 exchange hellos and peering messages.
   
     
-## The Vagrantfiles
+### The Vagrantfiles
 
 The relevant `Vagrantfiles` in the repository are divided into two buckets:  
   
@@ -23,7 +23,7 @@ The relevant `Vagrantfiles` in the repository are divided into two buckets:
     
     
     
-## Steps to run the setup
+### Steps to run the setup
 
 Clone the git repo and issue a `vagrant up` inside the directory:
 
