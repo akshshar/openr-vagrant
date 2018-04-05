@@ -10,7 +10,7 @@ Vagrant.configure(2) do |config|
   
 
    config.vm.define "rtr1" do |rtr1|
-      rtr1.vm.box =  "ciscoxr/openr-xr_ubuntu"
+      rtr1.vm.box =  "bento/ubuntu-16.04"
 
       rtr1.vm.network "forwarded_port", guest: 57777, host: 57777, auto_correct: true 
 
@@ -19,8 +19,10 @@ Vagrant.configure(2) do |config|
 
       rtr1.vm.network :private_network, virtualbox__intnet: "link1", auto_config: false
       rtr1.vm.network :private_network, virtualbox__intnet: "link2", auto_config: false
+      rtr1.vm.network :private_network, virtualbox__intnet: "link3", auto_config: false
+      rtr1.vm.network :private_network, virtualbox__intnet: "link7", auto_config: false
 
-      rtr1.vm.provision "apply_config", run: 'always', type: "shell" do |s|
+      rtr1.vm.provision "apply_config", type: "shell" do |s|
           s.path =  "scripts/setup_rtr1.sh"
       end
 
@@ -40,13 +42,15 @@ Vagrant.configure(2) do |config|
       # gig0/0/0/0 connected to "link1"  and  gig0/0/0/1 connected to "link2"
       # auto_config is not supported for XR, set to false
 
+      switch.vm.network :private_network, virtualbox__intnet: "link1", auto_config: false
+      switch.vm.network :private_network, virtualbox__intnet: "link2", auto_config: false
+      switch.vm.network :private_network, virtualbox__intnet: "link3", auto_config: false
       switch.vm.network :private_network, virtualbox__intnet: "link4", auto_config: false
       switch.vm.network :private_network, virtualbox__intnet: "link5", auto_config: false
       switch.vm.network :private_network, virtualbox__intnet: "link6", auto_config: false
-      switch.vm.network :private_network, virtualbox__intnet: "link7", auto_config: false
 
 
-      switch.vm.provision "apply_config", run: 'always', type: "shell" do |s|
+      switch.vm.provision "apply_config", type: "shell" do |s|
           s.path =  "scripts/setup_switch.sh"
       end
 
@@ -55,6 +59,7 @@ Vagrant.configure(2) do |config|
          v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
          v.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
          v.customize ["modifyvm", :id, "--nicpromisc5", "allow-all"]
+         v.customize ["modifyvm", :id, "--nicpromisc6", "allow-all"]
          v.customize ["modifyvm", :id, "--nicpromisc7", "allow-all"]
      end
     end
@@ -62,16 +67,20 @@ Vagrant.configure(2) do |config|
 
 
    config.vm.define "rtr2" do |rtr2|
-      rtr2.vm.box =  "ciscoxr/openr-xr_ubuntu"
+      rtr2.vm.box =  "bento/ubuntu-16.04"
 
       rtr2.vm.network "forwarded_port", guest: 57777, host: 57778, auto_correct: true
       # gig0/0/0/0 connected to "link1"  and  gig0/0/0/1 connected to "link2"
       # auto_config is not supported for XR, set to false
 
-      rtr2.vm.network :private_network, virtualbox__intnet: "link1", auto_config: false
-      rtr2.vm.network :private_network, virtualbox__intnet: "link2", auto_config: false
+      rtr2.vm.network :private_network, virtualbox__intnet: "link4", auto_config: false
+      rtr2.vm.network :private_network, virtualbox__intnet: "link5", auto_config: false
+      rtr2.vm.network :private_network, virtualbox__intnet: "link6", auto_config: false
+      rtr2.vm.network :private_network, virtualbox__intnet: "link10", auto_config: false
+      rtr2.vm.network :private_network, virtualbox__intnet: "link11", auto_config: false
+      rtr2.vm.network :private_network, virtualbox__intnet: "link12", auto_config: false
 
-      rtr2.vm.provision "apply_config", run: 'always', type: "shell" do |s|
+      rtr2.vm.provision "apply_config", type: "shell" do |s|
           s.path =  "scripts/setup_rtr2.sh"
       end
 
@@ -80,6 +89,9 @@ Vagrant.configure(2) do |config|
          v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
          v.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
          v.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
+         v.customize ["modifyvm", :id, "--nicpromisc5", "allow-all"]
+         v.customize ["modifyvm", :id, "--nicpromisc6", "allow-all"]
+         v.customize ["modifyvm", :id, "--nicpromisc7", "allow-all"]
      end
     end
 end
